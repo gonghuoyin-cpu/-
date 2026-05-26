@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="财醒钱币logo">
+  <rect width="512" height="512" rx="112" fill="#f4f6f4"/>
+  <circle cx="256" cy="256" r="172" fill="#f4b740"/>
+  <circle cx="256" cy="256" r="148" fill="#ffd766"/>
+  <path d="M136 170c13-33 45-56 82-56h76c55 0 100 45 100 100v84c0 55-45 100-100 100h-76c-55 0-100-45-100-100v-56" fill="#f2ab2d"/>
+  <circle cx="193" cy="230" r="19" fill="#5c3900"/>
+  <circle cx="319" cy="230" r="19" fill="#5c3900"/>
+  <path d="M214 303c21 24 63 24 84 0" fill="none" stroke="#5c3900" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="163" cy="148" r="34" fill="#fff3be"/>
+  <path d="M256 140v110M220 162h72M226 206h60" fill="none" stroke="#6b4200" stroke-width="22" stroke-linecap="round"/>
+</svg>
