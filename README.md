@@ -83,3 +83,4 @@ const PLATFORM_AI_DECISION_ENDPOINT = "/api/decision";
 ## 后续建议
 
 下一版可以继续加入：真实后端登录、数据库、负债管理、资产负债表完整版、社区内容审核、AI 财务教练后端代理、账号云端同步和数据导出。
+已更新 WebApp
