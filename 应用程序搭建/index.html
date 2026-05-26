@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f7a4d" />
+    <meta
+      name="description"
+      content="财醒是一款帮助用户管理现金流、预算、应急金、账单导入和消费决策的财务成长 Web App。"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="财醒" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>财醒</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/logo.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="authScreen" class="auth-screen" hidden>
+      <div class="auth-card">
+        <div class="auth-brand">
+          <div class="brand-mark" aria-label="财醒钱币logo">
+            <span class="coin-symbol">¥</span>
+          </div>
+          <div>
+            <h1>登录财醒</h1>
+          </div>
+        </div>
+        <div class="auth-tabs" role="tablist" aria-label="登录注册切换">
+          <button id="loginTabBtn" class="active" type="button">登录</button>
+          <button id="registerTabBtn" type="button">注册</button>
+        </div>
+        <form id="loginForm" class="auth-form">
+          <label>
+            手机号或邮箱
+            <input name="account" autocomplete="username" required />
+          </label>
+          <label>
+            密码
+            <input name="password" type="password" autocomplete="current-password" minlength="6" required />
+          </label>
+          <p id="loginMessage" class="form-message" aria-live="polite"></p>
+          <button class="primary-button" type="submit">登录</button>
+        </form>
+        <form id="registerForm" class="auth-form" hidden>
+          <label>
+            昵称
+            <input name="name" autocomplete="name" required />
+          </label>
+          <label>
+            手机号或邮箱
+            <input name="account" autocomplete="username" required />
+          </label>
+          <label>
+            密码
+            <input name="password" type="password" autocomplete="new-password" minlength="6" required />
+          </label>
+          <p id="registerMessage" class="form-message" aria-live="polite"></p>
+          <button class="primary-button" type="submit">注册并进入</button>
+        </form>
+        <button id="demoLoginBtn" class="secondary-button full-button" type="button">游客演示</button>
+        <p class="auth-note">第一版账号仅保存在当前浏览器本地，适合产品原型体验。</p>
+      </div>
+    </section>
+
+    <div class="app-shell">
+      <aside class="side-nav" aria-label="主导航">
+        <div class="brand">
+          <div class="brand-mark" aria-label="财醒钱币logo">
+            <span class="coin-symbol">¥</span>
+          </div>
+          <div>
+            <strong>财醒</strong>
+          </div>
+        </div>
+        <nav id="navList" class="nav-list"></nav>
+        <button id="resetDemoBtn" class="ghost-button" type="button">重置演示数据</button>
+      </aside>
+
+      <main class="main-stage">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">第一版 MVP</p>
+            <h1 id="pageTitle">首页</h1>
+          </div>
+          <div class="topbar-actions">
+            <button id="avatarBtn" class="avatar-button" type="button" aria-label="打开我的页面"></button>
+            <span id="currentUserLabel" class="user-pill"></span>
+            <button id="openDiagnosisBtn" class="primary-button" type="button">重新诊断</button>
+            <button id="logoutBtn" class="secondary-button" type="button">退出</button>
+          </div>
+        </header>
+
+        <section id="view-dashboard" class="view"></section>
+        <section id="view-ledger" class="view" hidden></section>
+        <section id="view-goals" class="view" hidden></section>
+        <section id="view-learning" class="view" hidden></section>
+        <section id="view-profile" class="view" hidden></section>
+      </main>
+
+      <nav id="mobileNav" class="mobile-nav" aria-label="移动端主导航"></nav>
+    </div>
+
+    <dialog id="diagnosisDialog" class="dialog">
+      <form id="diagnosisForm" method="dialog" class="dialog-panel">
+        <div class="dialog-head">
+          <div>
+            <p class="eyebrow">财务体检</p>
+            <h2>先判断你现在处在哪个阶段</h2>
+          </div>
+          <button class="icon-button" type="button" id="closeDiagnosisBtn" aria-label="关闭">×</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            月收入
+            <input name="income" type="number" min="0" step="100" required />
+          </label>
+          <label>
+            固定支出
+            <input name="fixedExpense" type="number" min="0" step="100" required />
+          </label>
+          <label>
+            当前存款
+            <input name="savings" type="number" min="0" step="100" required />
+          </label>
+          <label>
+            当前负债
+            <input name="debt" type="number" min="0" step="100" required />
+          </label>
+          <label>
+            每月必要生活费
+            <input name="monthlyNeeds" type="number" min="0" step="100" required />
+          </label>
+          <label>
+            目标安全垫(月)
+            <input name="emergencyMonths" type="number" min="1" max="12" step="1" required />
+          </label>
+          <label>
+            主要目标
+            <select name="goal">
+              <option value="先存下钱">先存下钱</option>
+              <option value="减少负债">减少负债</option>
+              <option value="提高收入">提高收入</option>
+              <option value="开始投资学习">开始投资学习</option>
+              <option value="管理家庭现金流">管理家庭现金流</option>
+            </select>
+          </label>
+          <label>
+            风险承受能力
+            <select name="risk">
+              <option value="保守">保守</option>
+              <option value="稳健">稳健</option>
+              <option value="积极">积极</option>
+            </select>
+          </label>
+          <label class="check-row">
+            <input name="hasInvestment" type="checkbox" />
+            已经开始投资
+          </label>
+          <label class="check-row">
+            <input name="hasEmergencyFund" type="checkbox" />
+            已有应急金
+          </label>
+        </div>
+        <div class="dialog-actions">
+          <button class="secondary-button" type="button" id="fillSampleBtn">填入示例</button>
+          <button class="primary-button" type="submit">生成诊断</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator && location.protocol !== "file:") {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
